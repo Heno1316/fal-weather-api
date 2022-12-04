@@ -18,12 +18,12 @@ export class CityController {
             const location: string = WeatherUtils.getLocationName(body);
             const request = await this._weatherService.byLocationName(location);
             const { list, city }: any = await lastValueFrom(request);
-            const { id, name, country, coord } = city;
+            const { id, name, coord } = city;
             await this._cityService.findByIdAndUpdate(id, {
                 id,
                 name,
                 state: body.state ?? null,
-                country,
+                country: body.country ?? null,
                 latitude: coord.lat,
                 longitude: coord.lon,
             });

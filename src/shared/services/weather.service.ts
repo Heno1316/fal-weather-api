@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { AxiosResponse } from 'axios';
 
 @Injectable()
 export class WeatherService {
@@ -10,7 +11,7 @@ export class WeatherService {
     @Inject(ConfigService)
     private _configService: ConfigService;
 
-    async byLocationName(q: string): Promise<any> {
+    byLocationName(q: string): Observable<AxiosResponse<any>> {
         return this._httpService
             .get('https://api.openweathermap.org/data/2.5/forecast', {
                 params: {

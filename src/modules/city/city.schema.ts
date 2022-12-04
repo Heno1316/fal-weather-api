@@ -30,7 +30,6 @@ export class City {
 
     @Prop({
         type: 'string',
-        required: true,
     })
     country: string;
 

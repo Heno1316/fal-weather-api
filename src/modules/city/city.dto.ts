@@ -4,7 +4,7 @@ export class CreateCityDto {
     readonly id: number;
     readonly name: string;
     readonly state?: string;
-    readonly country: string;
+    readonly country?: string;
     readonly latitude: number;
     readonly longitude: number;
 }
