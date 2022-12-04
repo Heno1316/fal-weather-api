@@ -6,10 +6,10 @@ import {
     Param,
 } from '@nestjs/common';
 import { WeatherService } from 'src/shared/services/weather.service';
-import { lastValueFrom } from 'rxjs';
-import WeatherUtils from 'src/utils/weather.util';
 import { CityService } from '../city/city.service';
 import { CityParam } from './weather.dto';
+import { lastValueFrom } from 'rxjs';
+import WeatherUtils from 'src/utils/weather.util';
 
 @Controller('weather')
 export class WeatherController {

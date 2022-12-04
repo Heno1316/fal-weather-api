@@ -34,6 +34,14 @@
 	# Restart pm2 instnace
     yarn pm2:restart
 
+## Running Test
+
+	# Run all test cases
+    yarn test
+
+	# See test coverage
+    yarn test:cov
+
 ## Directory Structure
 
     ├── dist                        # Compiled build files

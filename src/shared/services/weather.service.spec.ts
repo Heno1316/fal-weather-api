@@ -4,59 +4,12 @@ import { ConfigService } from '@nestjs/config';
 import { WeatherService } from './weather.service';
 import { AxiosResponse } from 'axios';
 import { of, throwError } from 'rxjs';
+import { find } from 'lodash';
 
-const mockedWeather = {
-    list: [
-        {
-            dt: 1670058000,
-            main: {
-                temp: 286.04,
-                feels_like: 285.42,
-                temp_min: 285.93,
-                temp_max: 286.04,
-                pressure: 1021,
-                sea_level: 1021,
-                grnd_level: 976,
-                humidity: 78,
-                temp_kf: 0.11,
-            },
-            weather: [
-                {
-                    id: 500,
-                    main: 'Rain',
-                    description: 'light rain',
-                    icon: '10n',
-                },
-            ],
-            clouds: {
-                all: 100,
-            },
-            wind: {
-                speed: 7.44,
-                deg: 208,
-                gust: 19.51,
-            },
-            visibility: 10000,
-            pop: 0.91,
-            rain: {
-                '3h': 1.53,
-            },
-            sys: {
-                pod: 'n',
-            },
-            dt_txt: '2022-12-03 09:00:00',
-        },
-    ],
-    city: {
-        id: 4298960,
-        name: 'London',
-        coord: {
-            lat: 37.129,
-            lon: -84.0833,
-        },
-        country: 'US',
-    },
-};
+const { readFileSync } = require('fs');
+const weathers = JSON.parse(readFileSync('test/mocks/weather.json'));
+const city = find(weathers, (weather) => weather['London']);
+const mockedWeather = city['London'];
 
 describe('WeatherService', () => {
     let weatherService: WeatherService;
